@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 # Default values
 SRC_DIR=(/usr/src/*microsoft-standard)
 PATCH_DIR=./patches
@@ -19,21 +18,24 @@ Usage: $0 [-h|--help] [-d|--directory] [-p|--patches] [--dry-run]
 EOF
 }
 
+# Find and store all patches in the given patch directory
 function find_patches() {
     patches=($PATCH_DIR/*.patch)
     echo "Found patches: ${patches[@]}"
 }
 
+# Apply all of the found patch files to the specified directory
 function apply_patches() {
     for patch in "${patches[@]}" ; do
         echo "Applying patch: $patch"
-        echo "patch -d $SRC_DIR -p < $patch"
+        echo "patch -d $SRC_DIR -p1 < $patch"
         if [ "$dry_run" != true ]; then
             patch -d $SRC_DIR -p1 < $patch
         fi
     done
 }
 
+# Read and apply args (if present)
 function read_args() {
     local param
     while [[ $# -gt 0 ]]; do
@@ -64,9 +66,11 @@ function read_args() {
     done
 }
 
+
+# Main function
+# delegates to subroutines
 function main() {
     read_args "$@"
-    echo "D: $SRC_DIR, P: $PATCH_DIR"
     find_patches
     apply_patches
     exit 0
