@@ -159,6 +159,16 @@ If your kernel source code is checked out to `/usr/src/*microsoft-standard` and 
 
 If your sources are elsewhere or you have a different patch set that you want to apply, then you can specify their location(s) with the `-d` and `-p` options, respectively.
 
+You can use the `--dry-run` options to see which patches will be applied without making changes to the kernel source code.
+
+__Example Usage__: 
+```
+scripts/apply_patches.sh
+scripts/apply_patches.sh --dry-run
+scripts/apply_patches.sh -d /usr/src/4.19.43-microsoft-standard
+scripts/apply_patches.sh -d /usr/src/4.19.43-microsoft-standard -p ./patches
+scripts/apply_patches.sh -d /usr/src/my-custon-kernel -p /usr/src/my-custom-patches
+```
 
 Copy USBIP tools libraries to location that USBIP tools can get to them:
 ```
