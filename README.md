@@ -159,7 +159,7 @@ If your kernel source code is checked out to `/usr/src/*microsoft-standard` and 
 
 If your sources are elsewhere or you have a different patch set that you want to apply, then you can specify their location(s) with the `-d` and `-p` options, respectively.
 
-You can use the `--dry-run` options to see which patches will be applied without making changes to the kernel source code.
+You can use the `--dry-run` option to see which patches will be applied without making changes to the kernel source code.
 
 __Example Usage__: 
 ```
